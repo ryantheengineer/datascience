@@ -38,6 +38,7 @@ for rep in reps:
     for customer in customers_by_rep[rep]:
         df_customer = df_rep[df_rep["Name"]==customer]
         df_customer_agg = df_customer.groupby(["Date"]).agg("sum")
+        df_customer_date_productline = df_customer.groupby(["Date", "Income Account"]).agg("sum")
         avg_order_value = df_customer_agg["Amount"].sum()/len(df_customer_agg)
         # df_customer_agg["Avg Amount"] = df_customer_agg["Amount"]/df_customer_agg["Quantity"]
         # df_customer_agg = df_customer_agg.sort_values(by="Date", ascending=True)
